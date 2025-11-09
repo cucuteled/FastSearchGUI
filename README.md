@@ -102,7 +102,7 @@ A pre-built executable (fat JAR) can be downloaded here:
 
 
 
-\*\*\[Download FastSearch](YOUR\_LINK\_HERE)\*\*  
+\*\*\[Download FastSearch](https://github.com/cucuteled/FastSearchGUI/raw/refs/heads/main/FastSearch-1.0.jar)\*\*  
 
 \*(Replace with your actual URL.)\*
 
