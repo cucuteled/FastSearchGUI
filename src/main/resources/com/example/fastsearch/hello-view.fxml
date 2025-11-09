@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="500.0" prefWidth="400.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastsearch.ConfiguratorController">
+    <padding>
+        <Insets bottom="0" left="0" right="0" top="0" />
+    </padding>
+   <children>
+      <Pane prefHeight="507.0" prefWidth="400.0">
+         <children>
+            <Label alignment="CENTER" layoutX="120.0" layoutY="14.0" text="FastSearch">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="29.0" layoutY="93.0" text="Welcome!">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="120.0" text="Do you know where to search?">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="buttonYes" layoutX="28.0" layoutY="164.0" mnemonicParsing="false" onAction="#selectYes" prefHeight="54.0" prefWidth="160.0" text="YES" />
+            <Button fx:id="buttonNo" layoutX="200.0" layoutY="164.0" mnemonicParsing="false" onAction="#selectNo" prefHeight="54.0" prefWidth="160.0" text="NO" />
+            <Pane fx:id="PathSelectPane" layoutX="28.0" layoutY="226.0" prefHeight="151.0" prefWidth="333.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Select Drives to Search:" />
+                  <ListView fx:id="driveChoiceBox" layoutX="16.0" layoutY="31.0" prefHeight="104.0" prefWidth="302.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="DriveSelectPane" layoutX="28.0" layoutY="226.0" prefHeight="75.0" prefWidth="333.0" visible="false">
+               <children>
+                  <Label layoutX="14.0" layoutY="6.0" text="Path:" />
+                  <TextField fx:id="PathFieldText" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="292.0" promptText="e.g.: C:\Files\" />
+                  <Button fx:id="FileBrowserButton" layoutX="306.0" layoutY="25.0" mnemonicParsing="false" onAction="#openFileBrowser" prefHeight="25.0" prefWidth="26.0" text="..." />
+                  <Button layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#MyUser" prefHeight="25.0" prefWidth="75.0" text="MyUser" />
+                  <Button layoutX="89.0" layoutY="50.0" mnemonicParsing="false" onAction="#MyDocuments" prefHeight="25.0" prefWidth="96.0" text="MyDocuments" />
+               </children></Pane>
+            <Label layoutX="140.0" layoutY="469.0" text="developed by cucuteled">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="welcomeNext" disable="true" layoutX="75.0" layoutY="418.0" mnemonicParsing="false" onAction="#Next" prefHeight="25.0" prefWidth="250.0" text="Next">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>

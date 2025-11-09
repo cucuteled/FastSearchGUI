@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastsearch.SearchController">
+   <children>
+      <MenuButton fx:id="orderByButton" layoutX="265.0" layoutY="36.0" mnemonicParsing="false" text="Order by">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#orderByName" text="Name" />
+          <MenuItem mnemonicParsing="false" onAction="#orderByTime" text="Time" />
+            <MenuItem mnemonicParsing="false" onAction="#orderByType" text="File Type" />
+            <MenuItem mnemonicParsing="false" onAction="#orderBySize" text="File Size" />
+        </items>
+      </MenuButton>
+      <TextField fx:id="nameFilterField" layoutX="5.0" layoutY="36.0" onAction="#initSearch" onKeyPressed="#initSearch" prefHeight="25.0" prefWidth="230.0" promptText="Filter by name" />
+      <Label layoutX="4.0" text="FastSearch">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ToggleButton fx:id="arrowButton" layoutX="237.0" layoutY="36.0" mnemonicParsing="false" onAction="#setOrderingMode" text="🔽" />
+      <Label fx:id="ProgressLabel" layoutX="3.0" layoutY="481.0" text="Progress: 0" />
+       <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="NEVER" layoutY="65.0" pannable="false" prefHeight="415" prefWidth="350">
+
+           <content>
+               <VBox fx:id="resultsBox" fillWidth="true" spacing="10" />
+           </content>
+
+       </ScrollPane>
+   </children>
+</AnchorPane>

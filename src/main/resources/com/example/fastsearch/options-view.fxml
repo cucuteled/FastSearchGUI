@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fastsearch.SearchConfigurationController">
+   <children>
+      <Button layoutX="14.0" layoutY="435.0" mnemonicParsing="false" onAction="#Back" prefHeight="25.0" prefWidth="67.0" text="Back" />
+      <Button fx:id="searchStartButton" layoutX="319.0" layoutY="435.0" mnemonicParsing="false" onAction="#startSearch" prefHeight="25.0" prefWidth="67.0" text="Next" />
+      <Label layoutX="140.0" layoutY="469.0" text="developed by cucuteled">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Pane fx:id="namePanel" disable="true" layoutX="14.0" layoutY="51.0" prefHeight="44.0" prefWidth="374.0">
+         <children>
+            <TextField fx:id="NameField" layoutX="16.0" layoutY="10.0" onKeyPressed="#validateAll" prefHeight="25.0" prefWidth="342.0" promptText="e.g.:project2025" />
+         </children>
+      </Pane>
+      <CheckBox fx:id="nameMode" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#toggleName" text="Name Contains:" />
+      <CheckBox fx:id="FileTypeMode" layoutX="14.0" layoutY="100.0" mnemonicParsing="false" onAction="#toggleFileType" text="Specify File Types:" />
+      <Pane fx:id="FileTypePanel" disable="true" layoutX="14.0" layoutY="124.0" prefHeight="151.0" prefWidth="374.0">
+         <children>
+            <Button fx:id="FileTypeIgnoreButton" layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#FileTypeIgnore" prefHeight="25.0" prefWidth="174.0" text="IGNORE" />
+            <Button fx:id="FileTypeMatchButton" disable="true" layoutX="194.0" layoutY="8.0" mnemonicParsing="false" onAction="#FileTypeMatch" prefHeight="25.0" prefWidth="174.0" text="MATCH" />
+            <ListView fx:id="FileTypeList" focusTraversable="false" layoutX="1.0" layoutY="69.0" prefHeight="82.0" prefWidth="374.0" />
+            <Button fx:id="FileTypeButton" layoutX="194.0" layoutY="39.0" mnemonicParsing="false" onAction="#FileTypeModify" text="Add/Remove" />
+            <TextField fx:id="FileTypeField" layoutX="107.0" layoutY="39.0" onInputMethodTextChanged="#FileTypeFieldCheck" onKeyReleased="#FileTypeFieldCheck" prefHeight="25.0" prefWidth="79.0" promptText="e.g.: mp4" />
+         </children></Pane>
+      <Pane fx:id="AttrPanel" disable="true" layoutX="13.0" layoutY="305.0" prefHeight="124.0" prefWidth="374.0">
+         <children>
+            <Label layoutX="8.0" layoutY="15.0" text="minFileSize:" />
+            <Label layoutX="162.0" layoutY="14.0" text="MB" />
+            <TextField fx:id="minSizeField" layoutX="70.0" layoutY="11.0" onAction="#validateAll" onKeyPressed="#validateAll" onKeyReleased="#validateAll" prefHeight="25.0" prefWidth="92.0" promptText="0" />
+            <Label layoutX="195.0" layoutY="15.0" text="maxFileSize:" />
+            <Label layoutX="351.0" layoutY="15.0" text="MB" />
+            <TextField fx:id="maxSizeField" layoutX="259.0" layoutY="10.0" onAction="#validateAll" onKeyPressed="#validateAll" onKeyReleased="#validateAll" prefHeight="25.0" prefWidth="92.0" promptText="0" />
+            <DatePicker fx:id="DateSelect" disable="true" layoutX="100.0" layoutY="85.0" onAction="#validateAll" />
+            <CheckBox fx:id="DateCheck" layoutX="39.0" layoutY="89.0" mnemonicParsing="false" onAction="#toggleDate" text="DATE:" />
+            <Button fx:id="DateModeButton" disable="true" layoutX="290.0" layoutY="85.0" mnemonicParsing="false" onAction="#changeDateMode" prefHeight="25.0" prefWidth="67.0" text="BEFORE" />
+         </children></Pane>
+      <CheckBox fx:id="AttrMode" layoutX="14.0" layoutY="282.0" mnemonicParsing="false" onAction="#toggleAttr" text="Specify Attributes:" />
+   </children>
+</AnchorPane>
