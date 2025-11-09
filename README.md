@@ -50,8 +50,7 @@ Each result entry includes:
 ### 1. Download
 A pre-built executable (fat JAR) can be downloaded here:
 
-**[Download FastSearch](YOUR_LINK_HERE)**  
-*(Replace with your actual URL.)*
+**[Download FastSearch](https://github.com/cucuteled/FastSearchGUI/raw/main/FastSearch-1.0.jar)**  
 
 ### 2. Run
 Since FastSearch is delivered as a **fat JAR**, it includes JavaFX and requires only a standard Java runtime:
