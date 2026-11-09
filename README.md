@@ -1,110 +1,47 @@
-\# FastSearch
+# FastSearch
 
+![FastSearch](rimg.png)
 
-
-!\[FastSearch](rimg.png)
-
-
-
-FastSearch is a high-performance, multi-threaded file search application for Windows, built with JavaFX.  
-
-It scans the filesystem in parallel, applies advanced filtering rules, and displays results with a modern and responsive UI.
-
-
+FastSearch is a high-performance, multi-threaded file search and disk usage explorer for Windows, built with JavaFX.
+It indexes the filesystem in parallel, lets you filter the results live, and shows where your disk space goes
+with a heat-mapped folder tree.
 
 ---
 
+## Features
 
+### Multi-Threaded Indexing
+- Each directory is scanned as a separate task on a shared thread pool.
+- Live progress indicator with an animated gear and the processed file count.
+- Stall detection: if scanning gets stuck, the gear stops and shows the folder it is stuck at.
 
-\## Features
+### Live Filters
+Filters can be changed at any time and apply instantly to everything indexed so far:
 
+- **File Name**: partial matching supported.
+- **File Types**: allowlist or denylist of extensions.
+- **File Size**: minimum and maximum size in MB.
+- **Modified Date**: files *before* or *after* a specific date.
+- **Protected / System Folder Exclusion**
+  (e.g. Windows, Program Files, System32, etc.)
 
+### Sorting Options
+Results can be sorted by name, size, modified date or file type, in ascending or descending order.
 
-\### Multi-Threaded File Searching
+### Rich Results View
+- 3-column, virtualized list (smooth even with millions of results).
+- File icon, name, size and last modified date for each entry.
+- **Open** button: opens the file in Windows Explorer with selection.
+- **Delete** button: deletes the file after a confirmation dialog.
 
-\- Each directory is processed on its own thread.
-
-\- Automatic tracking of active search threads.
-
-\- Live progress indicator showing processed file count.
-
-\- Intelligent timeout detection if scanning stalls.
-
-
-
-\### Search Filters
-
-FastSearch supports layered filtering conditions, including:
-
-
-
-\- \*\*File Name\*\* — partial matching supported.
-
-\- \*\*File Types\*\* — allowlist or denylist of extensions.
-
-\- \*\*File Size\*\* — minimum and maximum byte-based limit.
-
-\- \*\*Modified Date\*\* — show files \*before\* or \*after\* a specific date.
-
-\- \*\*Protected / System Folder Exclusion\*\*  
-
-&nbsp; (e.g. Windows, Program Files, System32, temp folders, etc.)
-
-
-
-\### Sorting Options
-
-Results can be sorted by:
-
-\- Name  
-
-\- Size  
-
-\- Modified Date  
-
-\- File Type  
-
-
-
-Each sort mode supports ascending or descending order.
-
-
-
-\### Rich Results View
-
-Each result entry includes:
-
-\- File icon (type-aware)  
-
-\- File name  
-
-\- File size (MB)  
-
-\- Last modified date  
-
-\- \*\*Open\*\* button — opens the file in Windows Explorer with selection  
-
-\- \*\*Delete\*\* button — deletes the file after a confirmation dialog  
-
-
+### Folder Tree View
+- Flowgraph-style folder tree with zoom and pan.
+- Heat map from yellow to red, relative to the capacity of the volume.
+- Per-drive trees with volume info; left click expands/collapses, right click opens in Explorer.
 
 ---
 
-
-
-\## Installation \& Usage
-
-
-
-\### 1. Download
-
-A pre-built executable (fat JAR) can be downloaded here at releases.
-
-
-
-\### 2. Run
-
-Since FastSearch is delivered as a \*\*fat JAR\*\*, it includes JavaFX and requires only a standard Java runtime:
+## Installation & Usage
 
 ## Version 2 – Changelog
 
