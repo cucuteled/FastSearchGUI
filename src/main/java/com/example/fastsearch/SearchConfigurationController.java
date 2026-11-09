@@ -133,11 +133,11 @@ public class SearchConfigurationController {
     @FXML
     public void changeDateMode() {
         if (DateModeButton.getText().equalsIgnoreCase("Before")) {
-            app.STATE.isDateConditionSpecifiyBeforeDate = true;
+            app.STATE.isDateConditionSpecifyBeforeDate = true;
             //
             DateModeButton.setText("AFTER");
         } else {
-            app.STATE.isDateConditionSpecifiyBeforeDate = false;
+            app.STATE.isDateConditionSpecifyBeforeDate = false;
             //
             DateModeButton.setText("BEFORE");
         }

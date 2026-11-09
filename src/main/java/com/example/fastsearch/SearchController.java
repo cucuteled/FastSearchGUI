@@ -9,16 +9,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
-import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 
 import java.time.LocalDate;
 
 import java.util.*;
-
-import javax.swing.*;
-import javax.swing.*;
 
 public class SearchController implements Initializable {
 
@@ -28,7 +24,8 @@ public class SearchController implements Initializable {
             Thread thread = new Thread(() -> {
                 app.STATE.activeSearchThreads.incrementAndGet();
                 try {
-                    new Search(app.STATE.selectedPath);
+                    ResultDir rd = new ResultDir(new File(app.STATE.selectedPath), null);
+                    new Search(rd);
                 } finally {
                     app.STATE.activeSearchThreads.decrementAndGet();
                 }
@@ -39,7 +36,8 @@ public class SearchController implements Initializable {
                 Thread thread = new Thread(() -> {
                     app.STATE.activeSearchThreads.incrementAndGet();
                     try {
-                        new Search(path);
+                        ResultDir rd = new ResultDir(new File(path), null);
+                        new Search(rd);
                     } finally {
                         app.STATE.activeSearchThreads.decrementAndGet();
                     }
@@ -146,7 +144,7 @@ public class SearchController implements Initializable {
             ImageView icon = new ImageView();
             icon.setFitWidth(48);
             icon.setFitHeight(48);
-            icon.setImage(getIconForFile(r.getFile()));
+            icon.setImage(getIconForFile(r.getjFile()));
 
             // Jobb oldali szövegek
             VBox infoBox = new VBox();
@@ -173,7 +171,7 @@ public class SearchController implements Initializable {
             Button openBtn = new Button("Open");
             openBtn.setOnAction(e -> {
                 try {
-                    String path = r.getFile().getAbsolutePath();
+                    String path = r.getPath();
                     // Windows Explorer megnyitás és kijelölés
                     new ProcessBuilder("explorer.exe", "/select,", path).start();
                 } catch (Exception ex) {
@@ -190,7 +188,7 @@ public class SearchController implements Initializable {
 
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
-                        if (r.getFile().delete()) {
+                        if (r.getjFile().delete()) {
                             resultsBox.getChildren().remove(row); // törlés után eltávolítjuk a sorból
                         } else {
                             Alert err = new Alert(Alert.AlertType.ERROR);

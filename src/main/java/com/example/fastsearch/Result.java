@@ -7,6 +7,28 @@ import java.time.ZoneId;
 
 public class Result implements Comparable<Result> {
 
+    private final File jFile;
+
+    private final String fileName;
+    private final long size;
+
+    private final String filePath;
+    private final ResultDir parentFolder;
+
+    private final LocalDate lastModifiedDate;
+
+    public Result(File file, ResultDir parent) {
+        this.jFile    = file;
+        this.fileName = file.getName();
+        this.size     = file.length();
+        parent.reportSize(size);
+        this.filePath = file.getAbsolutePath();
+        this.parentFolder = parent;
+        this.lastModifiedDate = Instant.ofEpochMilli(file.lastModified())
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
     @Override
     public int compareTo(Result o) {
         switch (FSApplication.getInstance().STATE.orderMode) {
@@ -33,32 +55,27 @@ public class Result implements Comparable<Result> {
         }
     }
 
-    private final File file;
-
-    public Result(File file) {
-        this.file = file;
-    }
-
-    public String getFileName() {
-        return file.getName();
-    }
-
     public LocalDate getLastModified() {
-        return Instant.ofEpochMilli(file.lastModified())
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
+        return this.lastModifiedDate;
     }
 
     public long getBytes() {
-        return file.length();
+        return this.size;
+    }
+
+    public String getFileName() {
+        return this.fileName;
+    }
+
+    public File getjFile() {
+        return jFile;
     }
 
     public String getPath() {
-        return file.getAbsolutePath();
+        return filePath;
     }
 
-    public File getFile() {
-        return file;
+    public ResultDir getParentFolder() {
+        return parentFolder;
     }
-
 }

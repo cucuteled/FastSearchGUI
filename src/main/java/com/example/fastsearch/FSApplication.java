@@ -11,7 +11,8 @@ import java.util.concurrent.Executors;
 
 public class FSApplication extends Application {
 
-    public final ExecutorService executor = Executors.newFixedThreadPool(8);
+    // maximum thread num for browsing
+    public final ExecutorService executor = Executors.newFixedThreadPool(Math.max(Runtime.getRuntime().availableProcessors(),16)); // 8
 
     private static FSApplication instance;
     public final ConfigState STATE = new ConfigState();

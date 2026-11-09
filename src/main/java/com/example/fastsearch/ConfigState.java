@@ -10,6 +10,7 @@ public class ConfigState {
     public final AtomicInteger activeSearchThreads = new AtomicInteger(0);
     //
     public List<Result> results = new ArrayList<>();
+    public List<ResultDir> dirs = new ArrayList<>();
     public int ProcessedFiles = 0;
     //
     public final List<String> DISALLOWED_PATH_SEGMENTS = List.of(
@@ -26,7 +27,7 @@ public class ConfigState {
             "\\boot\\",
             "\\$windows.~bt\\",
             "\\windows.old\\",
-            "\\programdata\\microsoft\\vault\\",   // védett
+            "\\programdata\\microsoft\\vault\\", // protected
             "\\system32\\drivers\\",
             "\\drivers\\",
             "\\msocache\\"
@@ -53,7 +54,7 @@ public class ConfigState {
 
     public boolean isDateAllowed = false;
     public LocalDate fileDateCondition;
-    public boolean isDateConditionSpecifiyBeforeDate = false;
+    public boolean isDateConditionSpecifyBeforeDate = false;
 
     // render
 
