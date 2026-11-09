@@ -9,9 +9,7 @@ public class ConfigState {
 
     public final AtomicInteger activeSearchThreads = new AtomicInteger(0);
     //
-    public List<Result> results = new ArrayList<>();
-    public List<ResultDir> dirs = new ArrayList<>();
-    public int ProcessedFiles = 0;
+    public final IndexStore index = new IndexStore();
     //
     public final List<String> DISALLOWED_PATH_SEGMENTS = List.of(
             "\\windows\\",

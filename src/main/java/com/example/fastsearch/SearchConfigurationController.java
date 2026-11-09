@@ -235,17 +235,17 @@ public class SearchConfigurationController {
     public  void startSearch() throws IOException{
 
         // confirmation
-        if (!AttrMode.isSelected() && !FileTypeMode.isSelected() && !nameMode.isSelected()) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Search");
-            alert.setHeaderText(null);
-            alert.setContentText("Are you sure you want to start the SEARCH without any specification?\nThat could take a long time and take up a lot of resources!");
-
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isEmpty() || result.get() != ButtonType.OK) {
-                return;   // the search will NOT start
-            }
-        }
+//        if (!AttrMode.isSelected() && !FileTypeMode.isSelected() && !nameMode.isSelected()) {
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle("Search");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Are you sure you want to start the SEARCH without any specification?\nThat could take a long time and take up a lot of resources!");
+//
+//            Optional<ButtonType> result = alert.showAndWait();
+//            if (result.isEmpty() || result.get() != ButtonType.OK) {
+//                return;   // the search will NOT start
+//            }
+//        }
 
         // getdata
         if (!NameField.getText().isBlank()) app.STATE.containsName = NameField.getText();
@@ -266,6 +266,6 @@ public class SearchConfigurationController {
         if (!maxSizeField.getText().isBlank()) app.STATE.FileSizeMaximum = Long.parseLong(maxSizeField.getText().trim());
 
         // open search scene & start search
-        app.loadScene("search.fxml", 350, 500);
+        app.loadScene("search-view.fxml", 1100, 700);
     }
 }

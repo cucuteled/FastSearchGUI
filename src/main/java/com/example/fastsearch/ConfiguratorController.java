@@ -115,6 +115,4 @@ public class ConfiguratorController {
 
         app.loadScene("options-view.fxml", 400, 500);
     }
-
-
 }

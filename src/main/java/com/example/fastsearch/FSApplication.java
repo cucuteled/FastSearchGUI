@@ -12,7 +12,8 @@ import java.util.concurrent.Executors;
 public class FSApplication extends Application {
 
     // maximum thread num for browsing
-    public final ExecutorService executor = Executors.newFixedThreadPool(Math.max(Runtime.getRuntime().availableProcessors(),16)); // 8
+    public final ExecutorService executor = Executors.newFixedThreadPool(
+            Math.min(Runtime.getRuntime().availableProcessors(), 16), r -> { Thread t = new Thread(r); t.setDaemon(true); return t; }); // 8
 
     private static FSApplication instance;
     public final ConfigState STATE = new ConfigState();
@@ -35,7 +36,7 @@ public class FSApplication extends Application {
         //Mystage.setTitle("Fast Search");
         Mystage.setIconified(false);
         loadScene("hello-view.fxml", 400, 500);
-        Mystage.setResizable(false);
+        Mystage.setResizable(true);
         Mystage.show();
     }
 

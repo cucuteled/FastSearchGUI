@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.fastsearch.SearchController">
+    <fx:define>
+        <ToggleGroup fx:id="viewGroup"/>
+    </fx:define>
+    <top>
+        <VBox spacing="6" style="-fx-padding:8;">
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="FastSearch"><font><Font name="System Bold" size="22.0"/></font></Label>
+                <Label fx:id="gearLabel" text="/.\" style="-fx-font-family:'Consolas','Courier New',monospace;-fx-font-size:18px;-fx-min-width:40;"/>
+                <Label fx:id="statusLabel" text="Processed: 0"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <ToggleButton fx:id="listToggle" text="List" selected="true" toggleGroup="$viewGroup"/>
+                <ToggleButton fx:id="treeToggle" text="Tree" toggleGroup="$viewGroup"/>
+            </HBox>
+            <HBox spacing="6" alignment="CENTER_LEFT">
+                <TextField fx:id="nameFilterField" promptText="Name contains" prefWidth="220"/>
+                <TextField fx:id="extFilterField" promptText="Types: jpg,png  (!tmp = ignore)" prefWidth="200"/>
+                <TextField fx:id="minMbField" promptText="Min MB" prefWidth="70"/>
+                <TextField fx:id="maxMbField" promptText="Max MB" prefWidth="70"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <MenuButton text="Order by">
+                    <items>
+                        <MenuItem onAction="#orderByName" text="Name"/>
+                        <MenuItem onAction="#orderByTime" text="Time"/>
+                        <MenuItem onAction="#orderByType" text="File Type"/>
+                        <MenuItem onAction="#orderBySize" text="File Size"/>
+                    </items>
+                </MenuButton>
+                <ToggleButton fx:id="arrowButton" text="🔽" onAction="#setOrderingMode"/>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <StackPane fx:id="content"/>
+    </center>
+</BorderPane>

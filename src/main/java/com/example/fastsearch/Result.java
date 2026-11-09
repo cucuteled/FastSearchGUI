@@ -1,81 +1,43 @@
 package com.example.fastsearch;
 
-import java.io.File;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Comparator;
 
-public class Result implements Comparable<Result> {
-
-    private final File jFile;
-
-    private final String fileName;
+public final class Result {
+    private final String name;
     private final long size;
+    private final long modified; // epoch ms
+    private final ResultDir parent;
+    private volatile boolean deleted;
 
-    private final String filePath;
-    private final ResultDir parentFolder;
-
-    private final LocalDate lastModifiedDate;
-
-    public Result(File file, ResultDir parent) {
-        this.jFile    = file;
-        this.fileName = file.getName();
-        this.size     = file.length();
-        parent.reportSize(size);
-        this.filePath = file.getAbsolutePath();
-        this.parentFolder = parent;
-        this.lastModifiedDate = Instant.ofEpochMilli(file.lastModified())
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
+    public Result(String name, long size, long modified, ResultDir parent) {
+        this.name = name;
+        this.size = size;
+        this.modified = modified;
+        this.parent = parent;
     }
 
-    @Override
-    public int compareTo(Result o) {
-        switch (FSApplication.getInstance().STATE.orderMode) {
-            case "orderByTime":
-                return getLastModified().compareTo(o.getLastModified());
-            case "orderBySize":
-                if (getBytes() == o.getBytes()) {
-                    return 0;
-                } else {
-                    return getBytes() > o.getBytes() ? 1 : -1;
-                }
-            case "orderByType":
-                String ext1 = getFileName();
-                int dot1 = ext1.lastIndexOf(".");
-                ext1 = (dot1 == -1) ? "" : ext1.substring(dot1 + 1).toLowerCase();
+    public String getName()        { return name; }
+    public long getSize()          { return size; }
+    public long getModified()      { return modified; }
+    public ResultDir getParent()   { return parent; }
+    public String getPath()        { return parent.getPath().resolve(name).toString(); }
+    public boolean isDeleted()     { return deleted; }
+    public void markDeleted()      { deleted = true; }
 
-                String ext2 = o.getFileName();
-                int dot2 = ext2.lastIndexOf(".");
-                ext2 = (dot2 == -1) ? "" : ext2.substring(dot2 + 1).toLowerCase();
+    public LocalDate getDate() {
+        return Instant.ofEpochMilli(modified).atZone(ZoneId.systemDefault()).toLocalDate();
+    }
 
-                return ext1.compareTo(ext2);
-            default:
-                return getFileName().compareTo(o.getFileName());
+    public static Comparator<Result> comparator(String mode) {
+        switch (mode) {
+            case "orderByTime": return Comparator.comparingLong(Result::getModified);
+            case "orderBySize": return Comparator.comparingLong(Result::getSize);
+            case "orderByType": return Comparator.comparing((Result r) -> Util.ext(r.name))
+                    .thenComparing(r -> r.name, String.CASE_INSENSITIVE_ORDER);
+            default:            return Comparator.comparing((Result r) -> r.name, String.CASE_INSENSITIVE_ORDER);
         }
-    }
-
-    public LocalDate getLastModified() {
-        return this.lastModifiedDate;
-    }
-
-    public long getBytes() {
-        return this.size;
-    }
-
-    public String getFileName() {
-        return this.fileName;
-    }
-
-    public File getjFile() {
-        return jFile;
-    }
-
-    public String getPath() {
-        return filePath;
-    }
-
-    public ResultDir getParentFolder() {
-        return parentFolder;
     }
 }
